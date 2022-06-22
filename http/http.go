@@ -6,9 +6,12 @@ import (
 	"unpercent/sql"
 )
 
+//https://hackandsla.sh/posts/2021-06-18-embed-vuejs-in-go/#building-the-backend
+// https://dev.to/ksckaan1/creating-a-website-using-golang-and-sveltejs-together-55g8
 func Start(db *sql.SqliteDb) error {
 	router := http.NewServeMux()
 	router.HandleFunc("/activities/", activityHandler(db))
+	router.Handle("/", http.FileServer(http.Dir("./public")))
 
 	return http.ListenAndServe(":5000", router)
 }

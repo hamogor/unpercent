@@ -1,7 +1,7 @@
 package main
 
 import (
-	"unpercent/http"
+	myhttp "unpercent/http"
 	"unpercent/sql"
 )
 
@@ -14,7 +14,7 @@ func main() {
 	db.All()
 	db.Get("Run")
 
-	err := http.Start(&db)
+	err := myhttp.Start(&db)
 	if err != nil {
 		panic(err)
 	}
